@@ -1,0 +1,26 @@
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+:root {
+    --primary-color: #6f42c1; /* Roxo primário */
+    --primary-dark: #4a2979; /* Roxo mais escuro */
+    --primary-light: #f4e9ff; /* Roxo claro */
+    --gradient-start: #6f42c1; /* Gradiente início */
+    --gradient-end: #4a2979; /* Gradiente fim */
+    --white: #ffffff; /* Branco */
+    --gray-muted: #6c757d; /* Cinza para textos */
+}
+
+
+.custom-snackbar-success {
+    background-color: #4caf50; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    font-size: 16px;
+    border-radius: 0;
+  }
+
+.custom-snackbar-danger {
+    background-color: #e82e2e; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    font-size: 16px;
+    border-radius: 0;
+  }

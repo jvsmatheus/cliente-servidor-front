@@ -1,0 +1,58 @@
+/* Background customization */
+.bg-gradient {
+    background: linear-gradient(
+        135deg,
+        var(--gradient-start),
+        var(--gradient-end)
+    );
+}
+
+/* Login card customization */
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 20px;
+    background-color: var(--white);
+    border: none;
+}
+
+.card {
+    border: none;
+}
+
+/* Text customization */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.text-muted {
+    color: var(--gray-muted) !important;
+}
+
+/* Button styles */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+/* Form field customization */
+.form-control {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(111, 66, 193, 0.3);
+}
+
+/* Links */
+a.text-muted:hover {
+    text-decoration: underline;
+}
