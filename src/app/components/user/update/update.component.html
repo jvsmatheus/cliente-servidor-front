@@ -1,0 +1,46 @@
+<body>
+    <!-- <div class="header">
+        <button class="back-button" [routerLink]="['/']" routerLinkActive="router-link-active"><i class="bi bi-arrow-bar-left"></i></button>
+    </div> -->
+    <div class="profile-card">
+        <h2 class="profile-title">Editar Perfil</h2>
+        <div class="profile-info">
+            <div class="profile-item">
+                <label>Nome:</label>
+                <input
+                    type="text"
+                    id="nome"
+                    class="form-control"
+                    placeholder="Digite seu nome"
+                    required
+                    [(ngModel)]="user.nome"
+                    name="nome"
+                />
+            </div>
+            <div class="profile-item">
+                <label>E-mail:</label>
+                <input
+                    type="text"
+                    id="email"
+                    class="form-control"
+                    required
+                    [(ngModel)]="user.email"
+                    name="email"
+                    disabled
+                />
+            </div>
+            <div class="profile-item">
+                <label>Senha:</label>
+                <input
+                    type="text"
+                    id="senha"
+                    class="form-control"
+                    required
+                    [(ngModel)]="senha"
+                    name="senha"
+                />
+            </div>
+            <button (click)="onSubmit()" class="edit-button">Salvar</button>
+        </div>
+    </div>
+</body>

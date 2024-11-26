@@ -7,17 +7,14 @@
         <div class="profile-info">
             <div class="profile-item">
                 <label>Nome:</label>
-                <p>João da Silva</p>
+                <p>{{ user.nome }}</p>
             </div>
             <div class="profile-item">
                 <label>E-mail:</label>
-                <p>joao.silva email.com</p>
+                <p>{{ user.email }}</p>
             </div>
-            <div class="profile-item">
-                <label>Data de Cadastro:</label>
-                <p>01/01/2023</p>
-            </div>
-            <button class="edit-button">Editar Perfil</button>
+            <button [routerLink]="['/user/edit/' + user.email]" routerLinkActive="router-link-active"  class="edit-button">Editar Perfil</button>
+            <button (click)="delete(user.email)" class="remove-button">Excluir Perfil</button>
         </div>
     </div>
 </body>

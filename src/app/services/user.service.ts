@@ -24,11 +24,11 @@ export class UserService extends BaseService {
       return firstValueFrom(this.http.get(this.getEndpoint(`${this.endpoint}/${email}`)));
     }
   
-    // update(email: string, user: any): Promise<any> {
-    //   return firstValueFrom(this.http.put(this.getEndpoint(`${this.endpoint}/${email}`), user));
-    // }
+    update(email: string, user: any): Promise<any> {
+      return firstValueFrom(this.http.put(this.getEndpoint(`${this.endpoint}/${email}`), user));
+    }
   
-    // delete(email: string): Promise<any> {
-    //   return firstValueFrom(this.http.delete(this.getEndpoint(`${this.endpoint}/${useemailrId}`)));
-    // }
+    delete(email: string): Promise<any> {
+      return firstValueFrom(this.http.delete(this.getEndpoint(`${this.endpoint}/${email}`)));
+    }
   }

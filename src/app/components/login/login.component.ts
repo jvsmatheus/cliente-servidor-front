@@ -11,9 +11,9 @@ import { TokenService } from '../../services/token.service';
     selector: 'app-login',
     standalone: true,
     imports: [
-        CommonModule, 
-        FormsModule, 
-        HttpClientModule, 
+        CommonModule,
+        FormsModule,
+        HttpClientModule,
         MatSnackBarModule,
         RouterModule,
     ],
@@ -37,40 +37,36 @@ export class LoginComponent {
 
     ngOnInit(): void {
         this.token = localStorage.getItem(this.loginService.api_token_name);
-    
+
         if (this.token) {
-          // Obtém claims específicas
-          this.email = this.tokenService.getClaim(this.token, 'sub');
+            this.email = this.tokenService.getClaim(this.token, 'sub');
         }
-      }
+    }
 
     onSubmit() {
-        this.loginService.login(this.formData)
-            .then(
-                (response) => {
-                    if (response.token) {
-                        this.loginService.setApiToken(response.token);
-                        this.toast.open('Logando...', 'Fechar', {
-                            duration: 1500,
-                            horizontalPosition: 'right',
-                            verticalPosition: 'top',
-                            panelClass: ['custom-snackbar-success']
-                          });
-                          setInterval(() => {
-                            this.router.navigate(['/user/' + this.email]);
-                        }, 2000);
-                    }
-                },
-                (error) => {
-                    console.log(error.error.mensagem);
-                    this.toast.open(error.error.mensagem, 'Fechar', {
-                        duration: 2000,
+        this.loginService.login(this.formData).then(
+            (response) => {
+                if (response.token) {
+                    this.loginService.setApiToken(response.token);
+                    this.toast.open('Logando...', 'Fechar', {
+                        duration: 1500,
                         horizontalPosition: 'right',
                         verticalPosition: 'top',
-                        panelClass: ['custom-snackbar-danger']
-                      });
-                    
+                        panelClass: ['custom-snackbar-success'],
+                    });
+                    setInterval(() => {
+                        this.router.navigate(['/user/' + this.email]);
+                    }, 2000);
                 }
-            );
+            },
+            (error) => {
+                this.toast.open(error.error.mensagem, 'Fechar', {
+                    duration: 2000,
+                    horizontalPosition: 'right',
+                    verticalPosition: 'top',
+                    panelClass: ['custom-snackbar-danger'],
+                });
+            }
+        );
     }
 }
