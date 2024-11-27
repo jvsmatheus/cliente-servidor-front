@@ -2,17 +2,21 @@ import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { User } from '../../models/user';
+import { CommonModule } from '@angular/common';
+import { LoginService } from '../../services/login.service';
 
 @Component({
     selector: 'app-user',
     imports: [
-        RouterModule
+        RouterModule,
+        CommonModule
     ],
     templateUrl: './user.component.html',
     styleUrl: './user.component.css',
 })
 export class UserComponent implements OnInit {
     private userService = inject(UserService);
+    private loginService = inject(LoginService);
     private activateRouting = inject(ActivatedRoute);
     private router = inject(Router);
     private email: any;
@@ -22,6 +26,7 @@ export class UserComponent implements OnInit {
     ngOnInit(): void {
         this.email = this.activateRouting.snapshot.paramMap.get('email');
         this.get();
+        
     }
 
     get() {
@@ -31,7 +36,7 @@ export class UserComponent implements OnInit {
                     response.nome,
                     response.email,
                     response.senha,
-                    response.is_admin,
+                    response.isAdmin,
                 );
             },
             (error) => {
@@ -41,7 +46,7 @@ export class UserComponent implements OnInit {
     }
 
     delete(email: string) {
-        this.userService.delete(this.email).then(
+        this.userService.delete(email).then(
             (response) => {
                 setInterval(() => {
                     this.router.navigate(['/'])
@@ -52,5 +57,14 @@ export class UserComponent implements OnInit {
                 
             }
         )
+    }
+
+    logout() {
+        this.loginService.logout();
+        
+    }
+
+    debug() {
+        console.log(this.user);
     }
 }

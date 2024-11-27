@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="card">
+        <h2 class="card-title">Lista de Usuários</h2>
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{ user.nome }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <button class="action-btn edit-btn">Editar</button>
+                        <button class="action-btn delete-btn">Excluir</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

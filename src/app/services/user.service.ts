@@ -16,9 +16,9 @@ export class UserService extends BaseService {
       return firstValueFrom(this.http.post(this.getEndpoint(this.endpoint), user));
     }
   
-    // findAll(): Promise<any> {
-    //   return firstValueFrom(this.http.get(this.getEndpoint(this.endpoint)));
-    // }
+    findAll(): Promise<any> {
+      return firstValueFrom(this.http.get(this.getEndpoint(this.endpoint)));
+    }
 
     findByEmail(email: string): Promise<any> {
       return firstValueFrom(this.http.get(this.getEndpoint(`${this.endpoint}/${email}`)));

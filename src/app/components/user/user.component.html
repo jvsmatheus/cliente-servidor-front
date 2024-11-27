@@ -1,20 +1,57 @@
 <body>
-    <!-- <div class="header">
-        <button class="back-button" [routerLink]="['/']" routerLinkActive="router-link-active"><i class="bi bi-arrow-bar-left"></i></button>
-    </div> -->
-    <div class="profile-card">
-        <h2 class="profile-title">Meu Perfil</h2>
-        <div class="profile-info">
-            <div class="profile-item">
-                <label>Nome:</label>
-                <p>{{ user.nome }}</p>
+    <div
+        class="d-flex justify-content-center align-items-center vh-100 bg-gradient"
+    >
+        <div class="card shadow-lg p-5 login-card">
+            <h1 class="text-center mb-4 text-primary">Meu Perfil</h1>
+            <div class="profile-info">
+                <div class="profile-item">
+                    <label>Nome:</label>
+                    <p>{{ user.nome }}</p>
+                </div>
+                <div class="profile-item">
+                    <label>E-mail:</label>
+                    <p>{{ user.email }}</p>
+                </div>
+                <button
+                    [routerLink]="['/user/edit/' + user.email]"
+                    routerLinkActive="router-link-active"
+                    class="edit-button"
+                >
+                    Editar Perfil
+                </button>
+                <button
+                    [routerLink]="['/register']"
+                    routerLinkActive="router-link-active"
+                    class="edit-button"
+                    *ngIf="user.is_admin"
+                >
+                    Criar novo usuário
+                </button>
+                <button
+                    [routerLink]="['/user']"
+                    routerLinkActive="router-link-active"
+                    class="edit-button"
+                    *ngIf="user.is_admin"
+                >
+                    Listar todos os usuários
+                </button>
+                <button 
+                    (click)="delete(user.email)" 
+                    class="remove-button"
+                    [disabled]="user.is_admin"
+                    [ngClass]="{'remove-button-disabled': user.is_admin}"
+                >
+                    Excluir Perfil
+                </button>
+                <button 
+                    (click)="logout()" 
+                    class="remove-button"
+                >
+                    Logout
+                </button>
             </div>
-            <div class="profile-item">
-                <label>E-mail:</label>
-                <p>{{ user.email }}</p>
-            </div>
-            <button [routerLink]="['/user/edit/' + user.email]" routerLinkActive="router-link-active"  class="edit-button">Editar Perfil</button>
-            <button (click)="delete(user.email)" class="remove-button">Excluir Perfil</button>
         </div>
     </div>
 </body>
+

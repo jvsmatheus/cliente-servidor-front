@@ -42,9 +42,11 @@ export class RegisterComponent {
                     panelClass: ['custom-snackbar-success']
                 });
 
-                setInterval(() => {
-                    this.router.navigate(['/']);
-                }, 2000);
+                if (!localStorage.getItem(this.userService.api_token_name)) {
+                    setInterval(() => {
+                        this.router.navigate(['/']);
+                    }, 2000);
+                }
             },
             (error) => {
                 this.toast.open(error.error.mensagem, 'Fechar', {

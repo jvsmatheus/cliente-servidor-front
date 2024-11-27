@@ -22,4 +22,10 @@ export class LoginService extends BaseService {
     login(credentials: any): Promise<any> {
         return firstValueFrom(this.http.post<LoginResponse>(this.api_url + 'login', credentials));
     }
+
+    logout(): Promise<any> {
+        console.log(this.api_url + 'logout');
+        
+        return firstValueFrom(this.http.post(this.api_url + 'logout', null));
+    }
 }
