@@ -7,14 +7,17 @@ import { LoginService } from '../services/login.service';
 })
 export class AuthGuard implements CanActivate {
 
-    private loginService = inject(LoginService);
-    private router = inject(Router);
+  private loginService = inject(LoginService);
+  private router = inject(Router);
 
   canActivate(): boolean {
-    if (this.loginService.isLoggedIn()) { // Verifica se o usuário está autenticado
+    if (this.loginService.isLoggedIn()) {
       return true;
     } else {
-      this.router.navigate(['/']); // Redireciona para login se não autenticado
+      // Evitar redirecionamento para a página de login caso já esteja nela
+      if (this.router.url !== '/') {
+        this.router.navigate(['/']);
+      }
       return false;
     }
   }
