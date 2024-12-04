@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { User } from '../../models/user';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../services/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-user',
@@ -19,6 +20,8 @@ export class UserComponent implements OnInit {
     private loginService = inject(LoginService);
     private activateRouting = inject(ActivatedRoute);
     private router = inject(Router);
+    private toast = inject(MatSnackBar);
+
     private email: any;
     
     user: User = new User();
@@ -48,6 +51,12 @@ export class UserComponent implements OnInit {
     delete(email: string) {
         this.userService.delete(email).then(
             (response) => {
+                this.toast.open('Usuário deletado com sucesso', 'Fechar', {
+                    duration: 1500,
+                    horizontalPosition: 'right',
+                    verticalPosition: 'top',
+                    panelClass: ['custom-snackbar-danger'],
+                });
                 setInterval(() => {
                     this.router.navigate(['/'])
                 }, 2000);

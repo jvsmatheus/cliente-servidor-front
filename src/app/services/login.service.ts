@@ -24,8 +24,7 @@ export class LoginService extends BaseService {
     }
 
     logout(): Promise<any> {
-        console.log(this.api_url + 'logout');
-        
-        return firstValueFrom(this.http.post(this.api_url + 'logout', null));
+        this.unsetApiToken();
+        return firstValueFrom(this.http.post(this.api_url + 'logout', {}));
     }
 }
