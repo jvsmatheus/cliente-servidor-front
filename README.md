@@ -1,59 +1,102 @@
-# ClienteServidorFront
+# Angular Application Setup
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.1.
+Este guia explica como baixar, instalar e executar um projeto Angular com as seguintes especificações:
 
-## Development server
+- **Angular CLI**: 19.0.2
+- **Node.js**: 22.11.0
+- **Gerenciador de pacotes (npm)**: 10.9.0
 
-To start a local development server, run:
+## Pré-requisitos
+
+Antes de começar, certifique-se de que você tem o seguinte instalado em sua máquina:
+
+1. **Node.js 22.11.0**:
+   - Baixe e instale a versão 22.11.0 do [site oficial do Node.js](https://nodejs.org/).
+   - Após a instalação, verifique a versão do Node.js executando no terminal:
+     ```bash
+     node -v
+     ```
+
+2. **npm 10.9.0** (já incluído com o Node.js):
+   - Verifique a versão do npm executando:
+     ```bash
+     npm -v
+     ```
+
+3. **Angular CLI 19.0.2**:
+   - Instale globalmente usando o seguinte comando:
+     ```bash
+     npm install -g @angular/cli@19.0.2
+     ```
+   - Verifique a versão do Angular CLI:
+     ```bash
+     ng version
+     ```
+
+## Clonar o Repositório
+
+Baixe o código-fonte do projeto usando Git:
+
+```bash
+git clone <URL_DO_REPOSITORIO>
+```
+Substitua `<URL_DO_REPOSITORIO>` pelo link do repositório do projeto.
+
+## Instalação de Dependências
+
+Navegue até o diretório do projeto clonado:
+
+```bash
+cd <NOME_DO_DIRETORIO>
+```
+Substitua `<NOME_DO_DIRETORIO>` pelo nome do diretório onde o projeto foi clonado.
+
+Em seguida, instale as dependências do projeto com o npm:
+
+```bash
+npm install
+```
+
+## Executar o Projeto
+
+Para iniciar o servidor de desenvolvimento, execute:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+O comando iniciará o projeto e fornecerá um link para acessá-lo no navegador, geralmente em [http://localhost:4200](http://localhost:4200).
 
-## Code scaffolding
+## Testando o Projeto
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Se o projeto incluir testes unitários, eles podem ser executados com o comando:
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+## Compilando para Produção
 
-For end-to-end (e2e) testing, run:
+Para gerar os arquivos de produção otimizados, use:
 
 ```bash
-ng e2e
+ng build --prod
 ```
+Os arquivos gerados serão salvos no diretório `dist/`.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Problemas Comuns
 
-## Additional Resources
+1. **Erro de versão do Node.js ou npm**:
+   - Certifique-se de que está usando as versões corretas mencionadas nos pré-requisitos.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+2. **Problemas com dependências**:
+   - Execute `npm install` novamente para garantir que todas as dependências sejam instaladas corretamente.
+
+3. **Porta em uso**:
+   - Se o erro indicar que a porta 4200 está em uso, você pode especificar uma porta diferente:
+     ```bash
+     ng serve --port 4300
+     ```
+
+Agora você está pronto para desenvolver e executar seu projeto Angular!
+
