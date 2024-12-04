@@ -39,8 +39,11 @@ export class LoginComponent {
         this.token = localStorage.getItem(this.loginService.api_token_name);
 
         if (this.token) {
-            this.email = this.tokenService.getClaim(this.token, 'sub');
+            this.email = this.tokenService.getClaim(this.token, 'email');
+            console.log(this.email);
         }
+
+        
     }
 
     onSubmit() {
