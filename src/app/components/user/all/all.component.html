@@ -13,9 +13,26 @@
                 <tr *ngFor="let user of users">
                     <td>{{ user.nome }}</td>
                     <td>{{ user.email }}</td>
+                    <!-- <td>
+                        <button
+                            class="action-btn edit-btn"
+                            [disabled]="user.is_admin"
+                            [ngClass]="{'remove-button-disabled': user.is_admin}"
+                        >
+                            Editar
+                        </button>
+                    </td> -->
                     <td>
-                        <button class="action-btn edit-btn">Editar</button>
-                        <button class="action-btn delete-btn">Excluir</button>
+                        <button
+                            class="action-btn delete-btn"
+                            [disabled]="user.is_admin"
+                            [ngClass]="{
+                                'remove-button-disabled': user.is_admin
+                            }"
+                            (click)="remove(user.email)"
+                        >
+                            Excluir
+                        </button>
                     </td>
                 </tr>
             </tbody>

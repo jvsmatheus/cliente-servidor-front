@@ -36,14 +36,6 @@ export class LoginComponent {
     private email: any;
 
     ngOnInit(): void {
-        this.token = localStorage.getItem(this.loginService.api_token_name);
-
-        if (this.token) {
-            this.email = this.tokenService.getClaim(this.token, 'email');
-            console.log(this.email);
-        }
-
-        
     }
 
     onSubmit() {
@@ -57,6 +49,12 @@ export class LoginComponent {
                         verticalPosition: 'top',
                         panelClass: ['custom-snackbar-success'],
                     });
+                    this.token = localStorage.getItem(this.loginService.api_token_name);
+
+                    if (this.token) {
+                        this.email = this.tokenService.getClaim(this.token, 'email');
+                        console.log(this.email);
+                    }
                     setInterval(() => {
                         this.router.navigate(['/user/' + this.email]);
                     }, 2000);
