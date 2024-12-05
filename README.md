@@ -60,7 +60,7 @@ npm install
 Em seguida adicione o IP e porta da api no seguinte arquivo `enviroment.development.ts` no campo `api_url` no seguinte modelo
 
 ```bash
-http://10.20.8.36:22222/
+http://localhost:22222/
 ```
 
 ## Executar o Projeto
