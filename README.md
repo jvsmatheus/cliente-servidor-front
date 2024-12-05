@@ -57,6 +57,12 @@ Em seguida, instale as dependências do projeto com o npm:
 npm install
 ```
 
+Em seguida adicione o IP e porta da api no seguinte arquivo `enviroment.development.ts` no campo `api_url` no seguinte modelo
+
+```bash
+http://10.20.8.36:22222/
+```
+
 ## Executar o Projeto
 
 Para iniciar o servidor de desenvolvimento, execute:
@@ -67,36 +73,4 @@ ng serve
 
 O comando iniciará o projeto e fornecerá um link para acessá-lo no navegador, geralmente em [http://localhost:4200](http://localhost:4200).
 
-## Testando o Projeto
-
-Se o projeto incluir testes unitários, eles podem ser executados com o comando:
-
-```bash
-ng test
-```
-
-## Compilando para Produção
-
-Para gerar os arquivos de produção otimizados, use:
-
-```bash
-ng build --prod
-```
-Os arquivos gerados serão salvos no diretório `dist/`.
-
-## Problemas Comuns
-
-1. **Erro de versão do Node.js ou npm**:
-   - Certifique-se de que está usando as versões corretas mencionadas nos pré-requisitos.
-
-2. **Problemas com dependências**:
-   - Execute `npm install` novamente para garantir que todas as dependências sejam instaladas corretamente.
-
-3. **Porta em uso**:
-   - Se o erro indicar que a porta 4200 está em uso, você pode especificar uma porta diferente:
-     ```bash
-     ng serve --port 4300
-     ```
-
-Agora você está pronto para desenvolver e executar seu projeto Angular!
 
