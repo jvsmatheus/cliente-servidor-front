@@ -1,6 +1,7 @@
-import { Injectable, Injector } from '@angular/core';
+import { inject, Injectable, Injector } from '@angular/core';
 import { BaseService } from './base.service';
 import { firstValueFrom } from 'rxjs';
+import { Router } from '@angular/router';
 
 interface LoginResponse {
     token: string;
@@ -10,6 +11,9 @@ interface LoginResponse {
     providedIn: 'root',
 })
 export class LoginService extends BaseService {
+
+    private router = inject(Router);
+    
     constructor(injector: Injector) {
         super(injector);
     }
@@ -23,8 +27,8 @@ export class LoginService extends BaseService {
         return firstValueFrom(this.http.post<LoginResponse>(this.api_url + 'login', credentials));
     }
 
-    logout(): Promise<any> {
+    logout(){
         this.unsetApiToken();
-        return firstValueFrom(this.http.post(this.api_url + 'logout', {}));
+        this.router.navigate(['/']);
     }
 }
