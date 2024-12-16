@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="card">
+        <h2 class="card-title">Lista de Categorias</h2>
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let category of categories">
+                    <td>{{ category.nome }}</td>
+                    <td>
+                        <button
+                            class="action-btn delete-btn"
+                            [disabled]="!user.admin"
+                            [ngClass]="{
+                                'remove-button-disabled': !user.admin
+                            }"
+                            (click)="remove(category.id)"
+                        >
+                            Excluir
+                        </button>
+                    </td>
+                    <td>
+                        <button
+                            class="action-btn delete-btn"
+                            [disabled]="!user.admin"
+                            [ngClass]="{
+                                'remove-button-disabled': !user.admin
+                            }"
+                            [routerLink]="['/category/edit/' + category.id]"
+                            routerLinkActive="router-link-active"
+                        >
+                            Editar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<body>
+    <div class="profile-card">
+        <h2 class="profile-title">Criar Categoria</h2>
+        <div class="profile-info">
+            <div class="profile-item">
+                <label>Nome:</label>
+                <input
+                    type="text"
+                    id="nome"
+                    class="form-control"
+                    placeholder="Digite seu nome"
+                    required
+                    [(ngModel)]="category.nome"
+                    name="nome"
+                />
+            </div>
+            <button (click)="onSubmit()" class="edit-button">Salvar</button>
+        </div>
+    </div>
+</body>

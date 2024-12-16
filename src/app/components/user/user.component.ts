@@ -39,8 +39,10 @@ export class UserComponent implements OnInit {
                     response.nome,
                     response.email,
                     response.senha,
-                    response.isAdmin,
+                    response.admin,
                 );
+                localStorage.setItem("current-user", JSON.stringify(this.user))
+                console.log(response);
             },
             (error) => {
                 console.log(error);

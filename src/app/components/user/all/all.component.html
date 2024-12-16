@@ -25,9 +25,9 @@
                     <td>
                         <button
                             class="action-btn delete-btn"
-                            [disabled]="user.is_admin"
+                            [disabled]="user.admin"
                             [ngClass]="{
-                                'remove-button-disabled': user.is_admin
+                                'remove-button-disabled': user.admin
                             }"
                             (click)="remove(user.email)"
                         >

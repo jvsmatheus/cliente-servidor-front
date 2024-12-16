@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'; // Importando o HttpClientModule
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { UserService } from '../../../services/user.service';
-import { User } from '../../../models/user';
-import { TokenService } from '../../../services/token.service';
+import { Category } from '../../models/category';
+import { CategoryService } from '../../services/category.service';
+import { TokenService } from '../../services/token.service';
 
 @Component({
     selector: 'app-register',
@@ -18,11 +18,11 @@ import { TokenService } from '../../../services/token.service';
         MatSnackBarModule,
         RouterModule,
     ],
-    providers: [UserService],
-    templateUrl: './update.component.html',
-    styleUrls: ['./update.component.css'],
+    providers: [CategoryService],
+    templateUrl: './category.component.html',
+    styleUrls: ['./category.component.css'],
 })
-export class UpdateUserComponent implements OnInit {
+export class CategoryComponent implements OnInit {
     formData = {
         nome: '',
         email: '',
@@ -31,44 +31,20 @@ export class UpdateUserComponent implements OnInit {
 
     // private registerService = inject(RegisterService);
     private toast = inject(MatSnackBar);
-    private userService = inject(UserService);
+    private categoryService = inject(CategoryService);
     private tokenService = inject(TokenService);
     private activateRouting = inject(ActivatedRoute);
     private router = inject(Router);
 
-    private email: any;
-     senha: any;
-    
-    user: User = new User();
+    category: Category = new Category();
 
     ngOnInit(): void {
-        this.email = this.activateRouting.snapshot.paramMap.get('email');
-        this.get();
-    }
-
-    get() {
-        this.userService.findByEmail(this.email).then(
-            (response) => {
-                this.user = new User(
-                    response.nome,
-                    response.email,
-                    response.senha,
-                    response.is_admin,
-                );
-                
-            },
-            (error) => {
-                console.log(error);
-                
-            }
-        );
     }
 
     onSubmit() {
-        this.user.senha = this.senha;
-        this.userService.update(this.email, this.user).then(
+        this.categoryService.create(this.category).then(
             (response) => {
-                this.toast.open('Conta editada com sucesso!', 'Fechar', {
+                this.toast.open('Conta criada com sucesso!', 'Fechar', {
                     duration: 1500,
                     horizontalPosition: 'right',
                     verticalPosition: 'top',
@@ -76,7 +52,7 @@ export class UpdateUserComponent implements OnInit {
                 });
 
                 setInterval(() => {
-                    this.router.navigate(['/user/' + this.email])
+                    this.router.navigate(['/category/all'])
                 }, 1000)
             },
             (error) => {

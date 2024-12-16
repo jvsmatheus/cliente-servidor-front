@@ -24,7 +24,7 @@
                     [routerLink]="['/register']"
                     routerLinkActive="router-link-active"
                     class="edit-button"
-                    *ngIf="user.is_admin"
+                    *ngIf="user.admin"
                 >
                     Criar novo usuário
                 </button>
@@ -32,15 +32,31 @@
                     [routerLink]="['/user']"
                     routerLinkActive="router-link-active"
                     class="edit-button"
-                    *ngIf="user.is_admin"
+                    *ngIf="user.admin"
                 >
                     Listar todos os usuários
+                </button>
+                <button
+                    [routerLink]="['/category/all']"
+                    routerLinkActive="router-link-active"
+                    class="edit-button"
+                    *ngIf="user.admin"
+                >
+                    Listar todas as categorias
+                </button>
+                <button
+                    [routerLink]="['/category']"
+                    routerLinkActive="router-link-active"
+                    class="edit-button"
+                    *ngIf="user.admin"
+                >
+                    Criar Nova Categoria
                 </button>
                 <button 
                     (click)="delete(user.email)" 
                     class="remove-button"
-                    [disabled]="user.is_admin"
-                    [ngClass]="{'remove-button-disabled': user.is_admin}"
+                    [disabled]="user.admin"
+                    [ngClass]="{'remove-button-disabled': user.admin}"
                 >
                     Excluir Perfil
                 </button>
