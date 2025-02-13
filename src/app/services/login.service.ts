@@ -1,6 +1,6 @@
 import { inject, Injectable, Injector } from '@angular/core';
 import { BaseService } from './base.service';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 interface LoginResponse {
@@ -23,8 +23,8 @@ export class LoginService extends BaseService {
         return !!token; // Retorna true se o token existir, false caso contrário
     }
 
-    login(credentials: any): Promise<any> {
-        return firstValueFrom(this.http.post<LoginResponse>(this.api_url + 'login', credentials));
+    login(credentials: any): Observable<LoginResponse> {
+        return this.http.post<LoginResponse>(this.api_url + 'login', credentials);
     }
 
     logout(){

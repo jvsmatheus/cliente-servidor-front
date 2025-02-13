@@ -7,7 +7,7 @@
             <p class="text-center text-muted mb-4">
                 Acesse sua conta para continuar
             </p>
-            <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+            <form (ngSubmit)="onSubmit()" [formGroup]="form">
                 <div class="mb-4">
                     <label for="email" class="form-label text-primary"
                         >E-mail</label
@@ -17,8 +17,8 @@
                         id="email"
                         class="form-control"
                         placeholder="Digite seu e-mail"
+                        formControlName="email"
                         required
-                        [(ngModel)]="formData.email"
                         name="email"
                     />
                 </div>
@@ -31,8 +31,8 @@
                         id="password"
                         class="form-control"
                         placeholder="Digite sua senha"
+                        formControlName="senha"
                         required
-                        [(ngModel)]="formData.senha"
                         name="password"
                     />
                 </div>
@@ -40,7 +40,7 @@
                     <button
                         type="submit"
                         class="btn btn-primary btn-lg"
-                        [disabled]="!loginForm.valid">
+                        >
                         Entrar
                     </button>
                 </div>

@@ -13,61 +13,80 @@
                     <label>E-mail:</label>
                     <p>{{ user.email }}</p>
                 </div>
-                <button
-                    [routerLink]="['/user/edit/' + user.email]"
-                    routerLinkActive="router-link-active"
-                    class="edit-button"
-                >
-                    Editar Perfil
-                </button>
-                <button
-                    [routerLink]="['/register']"
-                    routerLinkActive="router-link-active"
-                    class="edit-button"
-                    *ngIf="user.admin"
-                >
-                    Criar novo usuário
-                </button>
-                <button
-                    [routerLink]="['/user']"
-                    routerLinkActive="router-link-active"
-                    class="edit-button"
-                    *ngIf="user.admin"
-                >
-                    Listar todos os usuários
-                </button>
-                <button
-                    [routerLink]="['/category/all']"
-                    routerLinkActive="router-link-active"
-                    class="edit-button"
-                    *ngIf="user.admin"
-                >
-                    Listar todas as categorias
-                </button>
-                <button
-                    [routerLink]="['/category']"
-                    routerLinkActive="router-link-active"
-                    class="edit-button"
-                    *ngIf="user.admin"
-                >
-                    Criar Nova Categoria
-                </button>
-                <button 
-                    (click)="delete(user.email)" 
-                    class="remove-button"
-                    [disabled]="user.admin"
-                    [ngClass]="{'remove-button-disabled': user.admin}"
-                >
-                    Excluir Perfil
-                </button>
-                <button 
-                    (click)="logout()" 
-                    class="remove-button"
-                >
-                    Logout
-                </button>
             </div>
         </div>
     </div>
-</body>
+    <mat-sidenav-container class="example-container">
+        <mat-sidenav
+            #sidenav
+            mode="side"
+            [(opened)]="opened"
+            class="custom-nav"
+        >
+            <div class="sidenav-inner">
+                <div class="options">
+                    <button
+                        [routerLink]="['/user/edit/' + user.email]"
+                        routerLinkActive="router-link-active"
+                        class="edit-button"
+                    >
+                        Editar Perfil
+                    </button>
+                    <button
+                        [routerLink]="['/register']"
+                        routerLinkActive="router-link-active"
+                        class="edit-button"
+                        *ngIf="user.admin"
+                    >
+                        Criar novo usuário
+                    </button>
+                    <button
+                        [routerLink]="['/user']"
+                        routerLinkActive="router-link-active"
+                        class="edit-button"
+                        *ngIf="user.admin"
+                    >
+                        Listar todos os usuários
+                    </button>
+                    <button
+                        [routerLink]="['/category/all']"
+                        routerLinkActive="router-link-active"
+                        class="edit-button"
+                        *ngIf="user.admin"
+                    >
+                        Listar todas as categorias
+                    </button>
+                    <button
+                        [routerLink]="['/category']"
+                        routerLinkActive="router-link-active"
+                        class="edit-button"
+                        *ngIf="user.admin"
+                    >
+                        Criar Nova Categoria
+                    </button>
+                </div>
+                <div>
+                    <button
+                        (click)="delete(user.email)"
+                        class="remove-button"
+                        *ngIf="user.admin"
+                    >
+                        Excluir Perfil
+                    </button>
+                </div>
+            </div>
+        </mat-sidenav>
 
+        <mat-sidenav-content>
+            <p class="sidenav-buttons">
+                <button mat-button (click)="sidenav.toggle()">
+                    <i class="bi bi-x-lg" *ngIf="opened"></i>
+                    <i class="bi bi-list" *ngIf="!opened"></i>
+                </button>
+                <button mat-button (click)="logout()">
+                    <i class="bi bi-box-arrow-right" style="color: red;"></i>
+                </button>
+            </p>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</body>

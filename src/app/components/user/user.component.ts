@@ -5,12 +5,20 @@ import { User } from '../../models/user';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../services/login.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { MatPseudoCheckboxModule } from '@angular/material/core';
 
 @Component({
     selector: 'app-user',
     imports: [
         RouterModule,
-        CommonModule
+        CommonModule,
+        MatSidenavModule,
+        MatPseudoCheckboxModule, 
+        FormsModule, 
+        MatButtonModule
     ],
     templateUrl: './user.component.html',
     styleUrl: './user.component.css',
@@ -23,6 +31,8 @@ export class UserComponent implements OnInit {
     private toast = inject(MatSnackBar);
 
     private email: any;
+    events: string[] = [];
+    opened: boolean = false;
     
     user: User = new User();
 
