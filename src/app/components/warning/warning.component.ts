@@ -48,9 +48,7 @@ export class WarningComponent implements OnInit {
         this.warnings = [];
         this.categoryService.findById(this.categoryId).then(
             (response) => {
-                console.log(response);
                 this.category = new Category(response[0].id,  response[0].nome);
-                console.log(this.category);
             }
         );
         this.warningService.findAll().subscribe({
@@ -110,12 +108,15 @@ export class WarningComponent implements OnInit {
             CreateComponent,
             {
                 width: '60vw',
+                data: {
+                    category: this.category
+                }
             }
         );
           
-        //   modal.componentInstance.formSubmittedEvent.subscribe(() => {
-        //     modal.close();
-        //     this.get();
-        //   });
+          modal.componentInstance.formSubmittedEvent.subscribe(() => {
+            modal.close();
+            this.get();
+          });
     }
 }

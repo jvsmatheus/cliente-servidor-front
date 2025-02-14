@@ -17,7 +17,7 @@ interface Form {
     CommonModule,
 
   ],
-  templateUrl: './create.component.css',
+  templateUrl: './create.component.html',
   styleUrl: './create.component.css'
 })
 export class CreateComponent {
@@ -25,6 +25,7 @@ export class CreateComponent {
 
   form: FormGroup<Form>;
   warning: Warning = {};
+  category: any;
 
   constructor(
     private warningService: WarningService,
@@ -37,26 +38,40 @@ export class CreateComponent {
     console.log(data);
     
     this.warning = this.data.warning;
+    this.category = this.data.category;
   }
 
   save() {
     let form_value = this.form.value;
 
     const cleaned_value = {
-      descricao: form_value.descricao || ''
+        descricao: form_value.descricao || ''
     };
 
-    this.warning.descricao = cleaned_value.descricao;
-
-    this.warningService.create(this.warning).subscribe({
-    next: () => {
-        this.snack_bar.open('Aviso cadastrado com sucesso', 'fechar', {duration: 2000, panelClass: ['custom-snackbar-success']});
-        this.formSubmittedEvent.emit();
-    },
-    error: () => {
-        this.snack_bar.open('Erro ao cadastrar usuário', 'fechar', {duration: 2000, panelClass: ['custom-snackbar-error']});
-        this.formSubmittedEvent.emit();
+    // Verifique se a categoria está disponível e é válida
+    if (!this.category || !this.category.id) {
+        this.snack_bar.open('Categoria inválida', 'fechar', {duration: 2000, panelClass: ['custom-snackbar-error']});
+        return;
     }
+
+    // Montando o objeto warning com categoria completa
+    this.warning = {
+        descricao: cleaned_value.descricao,
+        categoria: this.category // Enviando a categoria completa
+    };
+    console.log(this.warning);
+    
+    this.warningService.create(this.warning).subscribe({
+        next: () => {
+            this.snack_bar.open('Aviso cadastrado com sucesso', 'fechar', {duration: 2000, panelClass: ['custom-snackbar-success']});
+            this.formSubmittedEvent.emit();
+        },
+        error: (err) => {
+            console.error('Erro ao cadastrar aviso:', err);
+            this.snack_bar.open('Erro ao cadastrar aviso', 'fechar', {duration: 2000, panelClass: ['custom-snackbar-error']});
+            this.formSubmittedEvent.emit();
+        }
     });
-  }
+}
+
 }
