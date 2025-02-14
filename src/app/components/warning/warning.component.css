@@ -64,3 +64,9 @@
     cursor: not-allowed;
     background-color: grey !important;
 }
+
+.add-button {
+    border: none;
+    background-color: transparent;
+    font-size: 25px;
+}

@@ -1,0 +1,12 @@
+.form {
+    padding: 20px;
+}
+
+.default-button {
+    font-size: 20px;
+    color: #000;
+}
+
+.inactive-button {
+    font-size: 20px;
+}

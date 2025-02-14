@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="form col-12 d-flex flex-column" [formGroup]="form">
+            <div class="d-flex flex-column">
+                <h2>Editar Aviso</h2>
+            </div>
+            <div class="mb-4">
+                <label for="formGroupExampleInput" class="form-label">Descrição</label>
+                <input matInput type="text" class="form-control" id="formGroupExampleInput" placeholder="Nome Exemplo" formControlName="descricao">
+            </div>
+            <button 
+            [ngClass]="form.invalid ? 'inactive-button' : 'default-button'"
+            [disabled]="form.invalid"
+            (click)="save()">
+                Salvar
+            </button>
+        </div>
+    </div>
+</div>
