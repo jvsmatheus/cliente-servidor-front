@@ -6,21 +6,22 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Warning } from '../../../models/warning';
 
+
 interface Form {
     descricao: FormControl<string | null>;
 }
 
 @Component({
-  selector: 'app-create',
+  selector: 'app-update',
   imports: [
     ReactiveFormsModule,
     CommonModule,
 
   ],
-  templateUrl: './create.component.css',
-  styleUrl: './create.component.css'
+  templateUrl: './update.component.html',
+  styleUrl: './update.component.css'
 })
-export class CreateComponent {
+export class UpdateComponent {
   @Output() formSubmittedEvent = new EventEmitter<void>();
 
   form: FormGroup<Form>;
@@ -48,9 +49,9 @@ export class CreateComponent {
 
     this.warning.descricao = cleaned_value.descricao;
 
-    this.warningService.create(this.warning).subscribe({
+    this.warningService.update(this.warning.id!, this.warning).subscribe({
     next: () => {
-        this.snack_bar.open('Aviso cadastrado com sucesso', 'fechar', {duration: 2000, panelClass: ['custom-snackbar-success']});
+        this.snack_bar.open('Aviso atualizado com sucesso', 'fechar', {duration: 2000, panelClass: ['custom-snackbar-success']});
         this.formSubmittedEvent.emit();
     },
     error: () => {

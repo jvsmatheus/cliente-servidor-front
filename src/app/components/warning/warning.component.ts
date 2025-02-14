@@ -10,6 +10,7 @@ import { Category } from '../../models/category';
 import { CategoryService } from '../../services/category.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateComponent } from './create/create.component';
+import { UpdateComponent } from './update/update.component';
 
 @Component({
     selector: 'app-all',
@@ -89,7 +90,7 @@ export class WarningComponent implements OnInit {
 
     openEditModal(warning: Warning) {
         let modal = this.modal.open(
-            CreateComponent,
+            UpdateComponent,
             {
                 width: '60vw',
                 data: {
@@ -102,5 +103,19 @@ export class WarningComponent implements OnInit {
             modal.close();
             this.get();
           });
+    }
+
+    openCreateModal() {
+        let modal = this.modal.open(
+            CreateComponent,
+            {
+                width: '60vw',
+            }
+        );
+          
+        //   modal.componentInstance.formSubmittedEvent.subscribe(() => {
+        //     modal.close();
+        //     this.get();
+        //   });
     }
 }
