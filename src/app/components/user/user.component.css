@@ -139,3 +139,9 @@ body {
     font-size: 25px;
     margin: 10px;
 }
+
+.title {
+    margin: 10px;
+    color: #000;
+    font-size: 30px;
+}

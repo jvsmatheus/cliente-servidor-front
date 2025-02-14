@@ -7,6 +7,7 @@ import { UpdateUserComponent } from './components/user/update/update.component';
 import { UpdateCategoryComponent } from './components/category/update/update.component';
 import { AllComponent } from './components/category/all/all.component';
 import { CategoryComponent } from './components/category/category.component';
+import { WarningComponent } from './components/warning/warning.component';
 
 export const routes: Routes = [
     {
@@ -47,6 +48,11 @@ export const routes: Routes = [
     {
         path: "category/edit/:id",
         component: UpdateCategoryComponent,
+        // canActivate: [AuthGuard]
+    },
+    {
+        path: "warning/:idCategoria",
+        component: WarningComponent,
         // canActivate: [AuthGuard]
     },
 

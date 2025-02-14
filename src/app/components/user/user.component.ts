@@ -4,11 +4,15 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { User } from '../../models/user';
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../../services/login.service';
+import { WarningService } from '../../services/warning.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatPseudoCheckboxModule } from '@angular/material/core';
+import { Warning } from '../../models/warning';
+import { Category } from '../../models/category';
+import { CategoryService } from '../../services/category.service';
 
 @Component({
     selector: 'app-user',
@@ -26,6 +30,7 @@ import { MatPseudoCheckboxModule } from '@angular/material/core';
 export class UserComponent implements OnInit {
     private userService = inject(UserService);
     private loginService = inject(LoginService);
+    private categoryService = inject(CategoryService);
     private activateRouting = inject(ActivatedRoute);
     private router = inject(Router);
     private toast = inject(MatSnackBar);
@@ -35,6 +40,7 @@ export class UserComponent implements OnInit {
     opened: boolean = false;
     
     user: User = new User();
+    categories: Category[] = [];
 
     ngOnInit(): void {
         this.email = this.activateRouting.snapshot.paramMap.get('email');
@@ -56,6 +62,14 @@ export class UserComponent implements OnInit {
             },
             (error) => {
                 console.log(error);
+            }
+        );
+
+        this.categoryService.findAll().then(
+            (response) => {
+                for (let category of response) {
+                    this.categories.push(category);
+                }
             }
         );
     }

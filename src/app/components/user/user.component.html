@@ -25,6 +25,7 @@
         >
             <div class="sidenav-inner">
                 <div class="options">
+                    <p class="title">Opções</p>
                     <button
                         [routerLink]="['/user/edit/' + user.email]"
                         routerLinkActive="router-link-active"
@@ -63,6 +64,15 @@
                         *ngIf="user.admin"
                     >
                         Criar Nova Categoria
+                    </button>
+                    <p class="title">Categorias de Avisos</p>
+                    <button
+                        *ngFor="let category of categories"
+                        [routerLink]="['/warning/' + category.id]"
+                        routerLinkActive="router-link-active"
+                        class="edit-button"
+                    >
+                        {{category.nome}}
                     </button>
                 </div>
                 <div>
